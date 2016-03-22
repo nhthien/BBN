@@ -283,10 +283,12 @@
 					$(option.right_node).each(function(index, value) {
 						_left_node = $(option.left_node);
 						_right_node = $(value);
+						var which = 1;
 						if (_left_node.offset().left >= _right_node.offset().left) {
 							_tmp = _left_node
 							_left_node = _right_node
 							_right_node = _tmp;
+							which = 2;
 						}
 
 						//Get Left point and Right Point
@@ -318,7 +320,7 @@
 						}
 						_ctx.lineWidth = option.width || 2;
 						_ctx.strokeStyle = _color;
-						headerDraw(_ctx,_left.x, _left.y, _right.x, _right.y )
+						headerDraw(_ctx,_left.x, _left.y, _right.x, _right.y, '', which )
 						// _ctx.arrow(_right.x, _right.x);
 						_ctx.stroke();
 					});
