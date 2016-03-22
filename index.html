@@ -130,7 +130,9 @@
 											<div class="slider-example length_slider">
 
 												<input id="ex5" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="45"/>
-												<span id="ex5CurrentSliderValLabel"><span>%</span><span id="ex5SliderVal">45</span></span>
+												<span id="ex5CurrentSliderValLabel"><span>%</span>
+												<span id="ex5dSliderVal">35</span>
+												<input type="number" value="35" id="ex5SliderVal" class="form-control input-sm" min="0" max='100' onchange="changeSliderValue('ex5', 'ex5SliderVal', 'ex5dSliderVal')" /></span>
 											</div>
 											</td>
 											<td><input type="checkbox"></td>
@@ -160,7 +162,7 @@
 									</div>	
 								
 								</div>
-								<div id="graph_length2" class="length lengthArrow n2 n3">
+								<div id="graph_length2" class="length n2 n3">
 								<div class="length_header">
 										<h3>Hair length Hair length Hair length Hair length Hair length</h3>
 										<a href="javascript:void(0);" class="length_btn"><img src="images/length-icon3.png" width="9" height="3" alt="img"></a>
@@ -206,7 +208,7 @@
 									</table>
 									</div>
 								</div>	
-								<div id="graph_length3" class="length lengthArrow n2">
+								<div id="graph_length3" class="length  n2">
 									<div class="length_header">
 										<h3>Height</h3>
 										<a href="javascript:void(0);" class="length_btn"><img src="images/length-icon3.png" width="9" height="3" alt="img"></a>
@@ -232,54 +234,7 @@
 									</table>
 									</div>
 								</div>
-								<!-- <div id="graph_length1" class="length n3">
-									<div class="length_header">
-										<h3>Hair length Hair length Hair length Hair length Hair length</h3>
-										<a href="javascript:void(0);" class="length_btn"><img src="images/length-icon3.png" width="9" height="3" alt="img"></a>
-										<a href="javascript:void(0);" class="length_btn"><img src="images/length-icon2.png" width="5" height="9" alt="img"></a>
-										<a href="javascript:void(0);" class="length_btn"><img src="images/length-icon1.png" width="11" height="7" alt="img"></a>
-									</div>
-									<div class="length_table_outer">
-									<table class="length_table">
-										<tbody>
-										  <tr>
-											<td>Short</td>
-											<td>
-
-											<div class="slider-example length_slider">
-
-												<input id="ex55" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="45"/>
-												<span id="ex55CurrentSliderValLabel"><span>%</span><span id="ex55SliderVal">45</span></span>
-											</div>
-											</td>
-											<td><input type="checkbox"></td>
-										  </tr>
-										  <tr>
-											<td>Short</td>
-											<td>
-											<div class="slider-example length_slider">
-												<input id="ex510" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="35"/>
-												<span id="ex510CurrentSliderValLabel"><span>%</span><span id="ex510SliderVal">35</span></span>
-											</div>
-											</td>
-											<td><input type="checkbox"></td>
-										  </tr>
-										  <tr>
-											<td>Short</td>
-											<td>
-											<div class="slider-example length_slider">
-												<input id="ex511" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="80"/>
-												<span id="ex511CurrentSliderValLabel"><span>%</span><span id="ex511SliderVal">80</span></span>
-											</div>
-											</td>
-											<td><input type="checkbox"></td>
-										  </tr>
-										</tbody>
-									</table>
-									</div>	
-								
-								</div> -->
-								<div id="graph_length3" class="length lengthArrow n4">
+								<div id="graph_length3" class="length  n4">
 									<div class="length_header">
 										<h3>Height</h3>
 										<a href="javascript:void(0);" class="length_btn"><img src="images/length-icon3.png" width="9" height="3" alt="img"></a>
@@ -305,7 +260,7 @@
 									</table>
 									</div>
 								</div>
-								<div id="graph_length3" class="length lengthArrow n4">
+								<div id="graph_length3" class="length  n4">
 									<div class="length_header">
 										<h3>Height</h3>
 										<a href="javascript:void(0);" class="length_btn"><img src="images/length-icon3.png" width="9" height="3" alt="img"></a>
@@ -345,7 +300,8 @@
 			horizantal_gap:10,
 			error:true,
 			width:1,
-			style:'solid'
+			style:'solid',
+			stroke: "black",
 		});
 		$( ".n1" ).draggable({
 		  drag: function(event, ui){mySVG.redrawLines();}
@@ -359,7 +315,7 @@
 			horizantal_gap:10,
 			error:true,
 			width:1,
-			style:'dotted'
+			style:'solid'
 		});
 		$( ".n3" ).draggable({
 		  drag: function(event, ui){mySVG.redrawLines();}
@@ -1396,45 +1352,65 @@ $('a.maximize_btn').click(function() {
 
 <script type='text/javascript' src="js/bootstrap-slider.js"></script>
 <script>
+
+function changeSliderValue(id, sliderId, spanId){
+	
+	var valData = parseInt($('#' + sliderId).val()); 
+	$('#' + id).slider('setValue', valData, true);
+	$("#" + sliderId).text(valData);
+	$("#" + spanId).text(valData);
+	// $('#ex5').slider('refresh');
+}
+
 $("#ex5").slider();
 	$("#ex5").on('slide', function(slideEvt) {
 	$("#ex5SliderVal").text(slideEvt.value);
+	$("#ex5SliderVal").val(slideEvt.value);
 });
-$("#ex6").slider();
+    $("#ex6").slider();
 	$("#ex6").on('slide', function(slideEvt) {
 	$("#ex6SliderVal").text(slideEvt.value);
+	$("#ex6SliderVal").val(slideEvt.value);
 });
 $("#ex7").slider();
 	$("#ex7").on('slide', function(slideEvt) {
 	$("#ex7SliderVal").text(slideEvt.value);
+	$("#ex7SliderVal").val(slideEvt.value);
 });
 	$("#ex55").slider();
 	$("#ex55").on('slide', function(slideEvt) {
 	$("#ex55SliderVal").text(slideEvt.value);
+	$("#ex55SliderVal").val(slideEvt.value);
 });
 $("#ex510").slider();
 	$("#ex510").on('slide', function(slideEvt) {
 	$("#ex510SliderVal").text(slideEvt.value);
+	$("#ex510SliderVal").val(slideEvt.value);
 });
 $("#ex511").slider();
 	$("#ex511").on('slide', function(slideEvt) {
 	$("#ex511SliderVal").text(slideEvt.value);
+	$("#ex511SliderVal").val(slideEvt.value);
 });
 $("#ex8").slider();
 	$("#ex8").on('slide', function(slideEvt) {
 	$("#ex8SliderVal").text(slideEvt.value);
+	$("#ex8SliderVal").val(slideEvt.value);
 });
 $("#ex9").slider();
 	$("#ex9").on('slide', function(slideEvt) {
 	$("#ex9SliderVal").text(slideEvt.value);
+	$("#ex9SliderVal").val(slideEvt.value);
 });
 $("#ex10").slider();
 	$("#ex10").on('slide', function(slideEvt) {
 	$("#ex10SliderVal").text(slideEvt.value);
+	$("#ex10SliderVal").val(slideEvt.value);
 });
 $("#ex11").slider();
 	$("#ex11").on('slide', function(slideEvt) {
 	$("#ex11SliderVal").text(slideEvt.value);
+	$("#ex11SliderVal").val(slideEvt.value);
 });
 </script>
 
