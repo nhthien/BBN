@@ -730,7 +730,7 @@
 				ticks_snap_bounds: 0,
 				scale: 'linear',
 				focus: false,
-				//tooltip_position: bottom
+				tooltip_position: null
 			},
 
 			getElement: function() {

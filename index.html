@@ -131,8 +131,8 @@
 
 												<input id="ex5" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="45"/>
 												<span id="ex5CurrentSliderValLabel"><span>%</span>
-												<span id="ex5dSliderVal">35</span>
-												<input type="number" value="35" id="ex5SliderVal" class="form-control input-sm" min="0" max='100' onchange="changeSliderValue('ex5', 'ex5SliderVal', 'ex5dSliderVal')" /></span>
+												<span id="ex5SliderVal" class="loadNum">35</span>
+												</span>
 											</div>
 											</td>
 											<td><input type="checkbox"></td>
@@ -142,7 +142,7 @@
 											<td>
 											<div class="slider-example length_slider">
 												<input id="ex10" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="35"/>
-												<span id="ex10CurrentSliderValLabel"><span>%</span><span id="ex10SliderVal">35</span></span>
+												<span id="ex10CurrentSliderValLabel"><span>%</span><span id="ex10SliderVal" class="loadNum">35</span></span>
 											</div>
 											</td>
 											<td><input type="checkbox"></td>
@@ -152,7 +152,7 @@
 											<td>
 											<div class="slider-example length_slider">
 												<input id="ex11" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="80"/>
-												<span id="ex11CurrentSliderValLabel"><span>%</span><span id="ex11SliderVal">80</span></span>
+												<span id="ex11CurrentSliderValLabel"><span>%</span><span id="ex11SliderVal" class="loadNum">80</span></span>
 											</div>
 											</td>
 											<td><input type="checkbox"></td>
@@ -162,7 +162,7 @@
 									</div>	
 								
 								</div>
-								<div id="graph_length2" class="length n2 n3">
+								<div id="graph_length2" class="length  n2 n3">
 								<div class="length_header">
 										<h3>Hair length Hair length Hair length Hair length Hair length</h3>
 										<a href="javascript:void(0);" class="length_btn"><img src="images/length-icon3.png" width="9" height="3" alt="img"></a>
@@ -179,7 +179,7 @@
 											<div class="slider-example length_slider">
 
 												<input id="ex55" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="45"/>
-												<span id="ex55CurrentSliderValLabel"><span>%</span><span id="ex55SliderVal">45</span></span>
+												<span id="ex55CurrentSliderValLabel"><span>%</span><span id="ex55SliderVal" class="loadNum">45</span></span>
 											</div>
 											</td>
 											<td><input type="checkbox"></td>
@@ -189,7 +189,7 @@
 											<td>
 											<div class="slider-example length_slider">
 												<input id="ex510" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="35"/>
-												<span id="ex510CurrentSliderValLabel"><span>%</span><span id="ex510SliderVal">35</span></span>
+												<span id="ex510CurrentSliderValLabel"><span>%</span><span id="ex510SliderVal" class="loadNum">35</span></span>
 											</div>
 											</td>
 											<td><input type="checkbox"></td>
@@ -199,7 +199,7 @@
 											<td>
 											<div class="slider-example length_slider">
 												<input id="ex511" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="80"/>
-												<span id="ex511CurrentSliderValLabel"><span>%</span><span id="ex511SliderVal">80</span></span>
+												<span id="ex511CurrentSliderValLabel"><span>%</span><span id="ex511SliderVal" class="loadNum">80</span></span>
 											</div>
 											</td>
 											<td><input type="checkbox"></td>
@@ -290,7 +290,7 @@
 								
 <script type="text/javascript" src="required/script/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="required/script/jquery.connectingLine.js"></script>
-<script type="text/javascript" src="scripts/jquery-ui-1.10.4.custom.min.js"></script>
+<script type="text/javascript" src="scripts/jquery-ui-1.10.4.custom.js"></script>
 
 <script type="text/javascript">
 	var mySVG = $('body').connect();
@@ -324,6 +324,42 @@
 		  drag: function(event, ui){mySVG.redrawLines();}
 		});
 		
+	var switchToInput = function () {
+     	var attrId = $(this).attr('id');
+        var $input = $("<input id='" + attrId +"' class='form-control-span-input' onblur=switchToSpan('" + attrId  +"')>", {
+            val: $(this).text(),
+            type: "text"
+        });
+        $input.addClass("loadNum");
+	$input.val($(this).text());
+        $(this).replaceWith($input);
+        $input.on("blur", function(e){
+        	  switchToSpan(this);        	
+        });
+	$input.on("keypress", function(e){
+        	if(e.keyCode === 13){
+            	   switchToSpan(this);  
+        	} 
+        });
+	//$input.on("keypress", switchToSpan);
+        $input.select();
+      };
+
+      var switchToSpan = function (id) {
+      	var attrpId = $(id).attr('id');
+      	var newVal = attrpId.replace('SliderVal','');    	
+      	var valueData = parseInt($(id).val());
+        var $span = $("<span>", {
+            text: $(id).val()
+        });
+        $('#'+newVal).slider('setValue', valueData, true);
+        $span.attr('id', attrpId);
+        $span.addClass("loadNum");
+        $(id).replaceWith($span);
+        $span.on("click", switchToInput);
+    }
+    $(".loadNum").on("click", switchToInput);
+    
 </script>
 							</div>
 									</div>
