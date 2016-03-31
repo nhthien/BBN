@@ -15,7 +15,8 @@
 		//Initialize Canvas object
 		_canvas = $('<canvas/>')
 			.attr('width', $(_parent).width())
-			.attr('height', $(_parent).height());
+			.attr('height', $(_parent).height())
+			.attr('id', 'canvasid');
 		$('body').append(_canvas);
 
 		this.drawLine = function(option) {
@@ -292,7 +293,7 @@
 						}
 
 						//Get Left point and Right Point
-						_left.x = _left_node.offset().left + _left_node.outerWidth();
+						_left.x = _left_node.offset().left + (_left_node.outerHeight() / 2);
 						_left.y = _left_node.offset().top + (_left_node.outerHeight() / 2);
 						_right.x = _right_node.offset().left;
 						_right.y = _right_node.offset().top + (_right_node.outerHeight() / 2);
