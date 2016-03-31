@@ -23,9 +23,11 @@
         <script src="js/jquery.panzoom.js"></script>
          <script src="js/jquery.mousewheel.js"></script>
         <link href="cssnew/style.css" rel="stylesheet" type="text/css" />
-
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css"/>
     </head>
     <body>
+	
         <div class="container-fluid" ng-app id="ng-app">
             <div class="content_outer_outer">
                 <div class="row content_outer">
@@ -105,7 +107,7 @@
                                         <div class="col-sm-12 right_content paddingLR0">
                                             <div class="tab-content">
                                                 <div id="Session1" class="tab-pane active col-xs-12 report_section">
-                                                    <div class="preview_mode">
+                                                    <div class="preview_mode preview_resize">
                                                         <div class="preview_mode_top">
                                                            <h4>Graph</h4>
                                                            <a href="javascript:void(0);" class="maximize_btn"><img src="images/close.png" width="16" height="16" alt="img"></a>
@@ -289,7 +291,9 @@
                                                                             </table>
                                                                         </div>
                                                                     </div>
-<input type="hidden" value="1" id="zoomval" />
+
+																	<div  id="dg"></div>
+																	<input type="hidden" value="1" id="zoomval" />
 
                                                                     <script type="text/javascript" src="required/script/jquery-1.11.0.min.js"></script>
                                                                     <script type="text/javascript" src="required/script/jquery.connectingLine.js"></script>
@@ -1373,8 +1377,8 @@
             <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
             <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
             <!-- Include all compiled plugins (below), or include individual files as needed -->
+			
             <script src="js/bootstrap.min.js"></script>
-
 
             <!-- <script src="js/jquery.inline-edit.js"></script>
             <script>
@@ -1382,9 +1386,6 @@
                             $('.inline-edit').inlineEdit('click');
                     });
             </script> -->
-
-
-
 
             <script>
 
@@ -1432,13 +1433,6 @@
 
                             $('#graph_length1,#graph_length2,#graph_length3').drags();
             </script>
-
-
-
-
-
-
-
 
 
             <!-- <script>
@@ -1531,14 +1525,6 @@
                             });
             </script>
 
-
-
-
-
-
-
-
-
             <script>
                 $(document).ready(function() {
                     $("ul.left_menu li a").tooltip();
@@ -1560,7 +1546,8 @@
                     }
                 });
             </script>
-            <script>
+            
+			<script>
                 $('#toools').click(function() {
                     $(this).children('ul.left_menu li a').toggleClass('tool_active');
                     $(this).children('.sub_left_menu').toggleClass('displayblock');
@@ -1569,5 +1556,8 @@
                     return false;
                 });
             </script>
+		</div>
+		
     </body>
+	<SCRIPT>$(function(){$('.preview_resize').resizable();});</SCRIPT>
 </html>
