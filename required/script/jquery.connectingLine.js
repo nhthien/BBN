@@ -1,6 +1,4 @@
 // Jquery Plugin
-// Created - Gunjan Kothari
-// Date - 24/04/2014
 // Plugin to Draw a line between to elements
 
 (function($) {
@@ -9,15 +7,16 @@
 		var _canvas;
 		var _ctx;
 		var _lines = new Array(); //This array will store all lines (option)
-		var _me = this;
+		var _me = this;x
 		var _parent = param || document;
 
 		//Initialize Canvas object
 		_canvas = $('<canvas/>')
-			.attr('width', $(_parent).width())
-			.attr('height', $(_parent).height())
-			.attr('id', 'canvasid');
-		$('body').append(_canvas);
+			// .attr('width', $('#graph_nodes').width())
+			.attr('width', $('body').width())
+			.attr('height', $('#graph_nodes').height())
+			.attr('id', 'canvasid')
+		$('#graph_nodes').append(_canvas);
 
 		this.drawLine = function(option) {
 			//It will push line to array.
@@ -44,22 +43,6 @@
 				});
 			}
 		};
-
-		// function headerDraw(ctx,x0,y0,x1,y1,style) { 
-
-		// 	var radius=15;
-		// 	var twoPI=2*Math.PI;
-		// 	ctx.save();
-		// 	ctx.beginPath();
-		// 	ctx.arc(x1,y1,radius,0,twoPI,false);
-		// 	ctx.stroke();
-		// 	ctx.beginPath();
-		// 	ctx.arc(x0,y0,radius,0,twoPI,false);
-		// 	ctx.stroke();
-		// 	ctx.beginPath();
-		// 	ctx.restore();
-		// }
-
 
 		function headerDraw(ctx,x1,y1,x2,y2,style,which,angle,d)
 		{
@@ -293,7 +276,7 @@
 						}
 
 						//Get Left point and Right Point
-						_left.x = _left_node.offset().left + (_left_node.outerHeight() / 2);
+						_left.x = _left_node.offset().left ;
 						_left.y = _left_node.offset().top + (_left_node.outerHeight() / 2);
 						_right.x = _right_node.offset().left;
 						_right.y = _right_node.offset().top + (_right_node.outerHeight() / 2);
@@ -342,6 +325,7 @@
 		this.redrawLines = function() {
 			_ctx.clearRect(0, 0, $(_parent).width(), $(_parent).height());
 			_lines.forEach(function(entry) {
+				alert(JSON.stringify(entry));
 				entry.resize = true;
 				_me.connect(entry);
 			});
