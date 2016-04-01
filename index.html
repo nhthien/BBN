@@ -108,9 +108,9 @@
                                                     <div class="preview_mode">
                                                         <div class="preview_mode_top">
                                                            <h4>Graph</h4>
-                                                           <a href="javascript:void(0);" class="maximize_btn"><img src="images/close.png" width="16" height="16" alt="img"></a>
-                                                            <a href="javascript:void(0);" class="maximize_btn"><img src="images/minimize.png" width="16" height="16" alt="img"></a>
-                                                            <a href="javascript:void(0);" class="maximize_btn"><img src="images/maximize.png" width="16" height="16" alt="img"></a>
+                                                           <a href="javascript:void(0);" class="maximize_btn close_btn"><img src="images/close.png" width="16" height="16" alt="img"></a>
+                                                            <a href="javascript:void(0);" class="maximize_btn min_btn"><img src="images/minimize.png" width="16" height="16" alt="img"></a>
+                                                            <a href="javascript:void(0);" class="maximize_btn max_btn"><img src="images/maximize.png" width="16" height="16" alt="img"></a>
                                                         </div>
                                                         <div class="preview_mode_bottom">
                                                             <div class="preview_mode_table" id="scrollChange">
@@ -330,7 +330,9 @@ $( "#scrollChange" ).scroll(function() {
                                               $(".length").css("-ms-transform", scale);
                                               $(".length").css("transform", scale);
                                           }
+
                                           mySVG.redrawLines();
+
                                     });
                                     
                                     $('#zoomout').click(function(){
@@ -355,7 +357,9 @@ $( "#scrollChange" ).scroll(function() {
                                               $(".length").css("-ms-transform", scale);
                                               $(".length").css("transform", scale);
                                           }
+
                                           mySVG.redrawLines();
+
                                     });
                                         var mySVG = $('body').connect();
                                         mySVG.drawLine({
@@ -442,9 +446,9 @@ $( "#scrollChange" ).scroll(function() {
                                                     <div class="preview_mode">
                                                         <div class="preview_mode_top">
                                                             <h4>Data Panel</h4>
-                                                            <a href="javascript:void(0);" class="maximize_btn"><img src="images/close.png" width="16" height="16" alt="img"></a>
-                                                            <a href="javascript:void(0);" class="maximize_btn"><img src="images/minimize.png" width="16" height="16" alt="img"></a>
-                                                            <a href="javascript:void(0);" class="maximize_btn"><img src="images/maximize.png" width="16" height="16" alt="img"></a>
+                                                            <a href="javascript:void(0);" class="maximize_btn close_btn"><img src="images/close.png" width="16" height="16" alt="img"></a>
+                                                            <a href="javascript:void(0);" class="maximize_btn min_btn"><img src="images/minimize.png" width="16" height="16" alt="img"></a>
+                                                            <a href="javascript:void(0);" class="maximize_btn max_btn"><img src="images/maximize.png" width="16" height="16" alt="img"></a>
                                                         </div>
                                                         <div class="preview_mode_bottom">
                                                             <div class="preview_mode_table">
@@ -1582,5 +1586,25 @@ $( "#scrollChange" ).scroll(function() {
                     return false;
                 });
             </script>
+ 
     </body>
 </html>
+ 
+		</div>
+		
+    </body>
+	<SCRIPT>$(function(){$('.preview_resize').resizable();});</SCRIPT>
+	<SCRIPT>
+		$('.close_btn').click(function() {
+			$(this).parent().parent().hide();
+        });
+		$('.min_btn').click(function() {
+			//$(this).parent(".preview_mode_top").parent(".preview_resize").css('height','auto');
+			$(this).parent(".preview_mode_top").siblings(".preview_mode_bottom").slideUp();
+        });
+		$('.max_btn').click(function() {
+			$(this).parent(".preview_mode_top").siblings(".preview_mode_bottom").slideDown();
+        });
+	</SCRIPT>
+</html>
+
