@@ -297,16 +297,6 @@
 
                                                                     <script type="text/javascript">
 	 
-	 //$('#graph_nodes').addEventListener('overflow', OnOverflowChanged, false);
-	 
-	 /*function OnOverflowChanged (event) {
-            if (event.type == "overflow") {
-		alert('inside overflow');
-	    }
-           }*/
-$( "#scrollChange" ).scroll(function() {
-  mySVG.redrawLines();
-});
 
                                     $('#zoomin').click(function(){
                                          //var mySVG = $('body').connect();
@@ -330,9 +320,7 @@ $( "#scrollChange" ).scroll(function() {
                                               $(".length").css("-ms-transform", scale);
                                               $(".length").css("transform", scale);
                                           }
-
                                           mySVG.redrawLines();
-
                                     });
                                     
                                     $('#zoomout').click(function(){
@@ -340,14 +328,13 @@ $( "#scrollChange" ).scroll(function() {
                                        $("#zoomval").val(parseFloat($("#zoomval").val()) - 0.5);
                                         var zoomVal = $("#zoomval").val();
                                          var scale = "scale(" + zoomVal + ")";   
-                                     if((parseFloat($("#zoomval").val())) > 0.1){
-                                       
+                                     if((parseFloat($("#zoomval").val())) > 0.1){                                    
                                            $(".length").css("-webkit-transform", scale);
                                            $(".length").css("-moz-transform", scale);
                                            $(".length").css("-o-transform", scale);
                                            $(".length").css("-ms-transform", scale);
                                            $(".length").css("transform", scale);
-                                           
+ 
                                          }  else {
                                               scale = "scale(0.5)";
                                               $("#zoomval").val('0.5');

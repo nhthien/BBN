@@ -7,14 +7,14 @@
 		var _canvas;
 		var _ctx;
 		var _lines = new Array(); //This array will store all lines (option)
-		var _me = this;x
+		var _me = this;
 		var _parent = param || document;
 
 		//Initialize Canvas object
 		_canvas = $('<canvas/>')
 			// .attr('width', $('#graph_nodes').width())
-			.attr('width', $('body').width())
-			.attr('height', $('#graph_nodes').height())
+			.attr('width', $('#graph_nodes').width())
+			.attr('height', $('#graph_nodes').height()+200)
 			.attr('id', 'canvasid')
 		$('#graph_nodes').append(_canvas);
 
@@ -276,7 +276,7 @@
 						}
 
 						//Get Left point and Right Point
-						_left.x = _left_node.offset().left ;
+						_left.x = _left_node.offset().left   + (_left_node.outerHeight() / 2);
 						_left.y = _left_node.offset().top + (_left_node.outerHeight() / 2);
 						_right.x = _right_node.offset().left;
 						_right.y = _right_node.offset().top + (_right_node.outerHeight() / 2);
@@ -307,6 +307,13 @@
 						headerDraw(_ctx,_left.x, _left.y, _right.x, _right.y, '', which )
 						// _ctx.arrow(_right.x, _right.x);
 						_ctx.stroke();
+						console.log('ht', _right_node.offset().top);
+						console.log(_right_node[0].id);
+						if($('#graph_nodes').height() < _right_node.offset().top){
+							$('#' + _right_node[0].id).addClass('pointerDisable');
+						} else {
+							$('#' + _right_node[0].id).removeClass('pointerDisable');
+						}
 					});
 
 					//option.resize = option.resize || false;
@@ -325,7 +332,7 @@
 		this.redrawLines = function() {
 			_ctx.clearRect(0, 0, $(_parent).width(), $(_parent).height());
 			_lines.forEach(function(entry) {
-				alert(JSON.stringify(entry));
+				//alert(JSON.stringify(entry));
 				entry.resize = true;
 				_me.connect(entry);
 			});
