@@ -1565,8 +1565,8 @@
 			$(this).parent().parent().hide();
         });
 		$('.min_btn').click(function() {
+			//$(this).parent(".preview_mode_top").parent(".preview_resize").css('height','auto');
 			$(this).parent(".preview_mode_top").siblings(".preview_mode_bottom").slideUp();
-			$(this).parent(".preview_mode_top").parent(".preview_resize").css('height','auto');
         });
 		$('.max_btn').click(function() {
 			$(this).parent(".preview_mode_top").siblings(".preview_mode_bottom").slideDown();
