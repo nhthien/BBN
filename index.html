@@ -361,12 +361,14 @@
                                         $(".n1").draggable({
                                             drag: function(event, ui) {
                                                 mySVG.redrawLines();
-                                            }
+                                            },
+containment: "parent"
                                         });
                                         $(".n2").draggable({
                                             drag: function(event, ui) {
                                                 mySVG.redrawLines();
-                                            }
+                                            },
+containment: "parent"
                                         });
                                         mySVG.drawLine({
                                             left_node: '.n3',
@@ -379,12 +381,14 @@
                                         $(".n3").draggable({
                                             drag: function(event, ui) {
                                                 mySVG.redrawLines();
-                                            }
+                                            },
+containment: "parent"
                                         });
                                         $(".n4").draggable({
                                             drag: function(event, ui) {
                                                 mySVG.redrawLines();
-                                            }
+                                            },
+containment: "parent"
                                         });
 
                                         var switchToInput = function() {

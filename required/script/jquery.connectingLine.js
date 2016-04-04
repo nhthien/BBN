@@ -302,18 +302,12 @@
 							//chat-icon4.png
 							_ctx.setLineDash(_dash);
 						}
+
 						_ctx.lineWidth = option.width || 2;
 						_ctx.strokeStyle = _color;
 						headerDraw(_ctx,_left.x, _left.y, _right.x, _right.y, '', which )
 						// _ctx.arrow(_right.x, _right.x);
 						_ctx.stroke();
-						console.log('ht', _right_node.offset().top);
-						console.log(_right_node[0].id);
-						if($('#graph_nodes').height() < _right_node.offset().top){
-							$('#' + _right_node[0].id).addClass('pointerDisable');
-						} else {
-							$('#' + _right_node[0].id).removeClass('pointerDisable');
-						}
 					});
 
 					//option.resize = option.resize || false;
